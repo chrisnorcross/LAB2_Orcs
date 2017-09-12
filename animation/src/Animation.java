@@ -1,3 +1,5 @@
+//Lab2 Completed by Christopher Norcross, Eric Allen, Noah Awad
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -27,28 +29,13 @@ public class Animation extends JPanel {
     //Override this JPanel's paint method to cycle through picture array and draw images
     
     public void paint(Graphics g) {
-    	/*BufferedImage img1 = createImage(1);
-    	pics1 = new BufferedImage[10];
-    	for(int i = 0; i < frameCount; i++) {
-    		pics1[i] = img1.getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
-    	}
-    	BufferedImage img2 = createImage(2);
-    	pics2 = new BufferedImage[10];
-    	for(int i = 0; i < frameCount; i++) {
-    		pics2[i] = img2.getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
-    	}
-    	BufferedImage img3 = createImage(3);
-    	pics3 = new BufferedImage[10];
-    	for(int i = 0; i < frameCount; i++) {
-    		pics3[i] = img3.getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
-    	}*/
     	if(direction==0) {
-    		if(xloc>frameWidth && yloc<frameHeight) {
+    		if(xloc>frameWidth-imgWidth && yloc<frameHeight-imgHeight) {
     			direction =1;
     			picNum = (picNum + 1) % frameCount;
     			g.drawImage(pics1[picNum], xloc, yloc, Color.gray, this);
     		}
-    		else if(xloc<frameWidth&&yloc>frameHeight) {
+    		else if(xloc<frameWidth-imgWidth&&yloc>frameHeight-imgHeight) {
     			direction=3;
     			picNum = (picNum + 1) % frameCount;
     			g.drawImage(pics3[picNum], xloc, yloc, Color.gray, this);
@@ -59,13 +46,13 @@ public class Animation extends JPanel {
     		}
 		}
     	else if(direction==1) {
-    		if(yloc>frameHeight && xloc>0) {
+    		if(yloc>frameHeight-imgHeight && xloc>0) {
     			direction =2;
     			picNum = (picNum + 1) % frameCount;
         		g.drawImage(pics2[picNum], xloc, yloc, Color.gray, this);
         		
     		}
-    		else if(yloc<frameHeight && xloc<0) {
+    		else if(yloc<frameHeight-imgHeight && xloc<0) {
     			direction=0;
     			picNum = (picNum + 1) % frameCount;
         		g.drawImage(pics0[picNum], xloc, yloc, Color.gray, this);
@@ -92,12 +79,12 @@ public class Animation extends JPanel {
     			}
     		}
     	else if(direction==3) {
-    		if(yloc<0 && xloc<frameWidth) {
+    		if(yloc<0 && xloc<frameWidth-imgWidth) {
     			direction =0;
     			picNum = (picNum + 1) % frameCount;
         		g.drawImage(pics0[picNum], xloc+=xIncr, yloc-=yIncr, Color.gray, this);
     			}
-    		else if(xloc>frameWidth&&yloc>0) {
+    		else if(xloc>frameWidth-imgWidth&&yloc>0) {
     			direction =2;
     			picNum = (picNum + 1) % frameCount;
         		g.drawImage(pics2[picNum], xloc, yloc, Color.gray, this);
@@ -199,33 +186,3 @@ public class Animation extends JPanel {
     		return null;
     }
 }
-    	//}
-    	/*if(n==1) {
-    		try {
-        		bufferedImage = ImageIO.read(new File("images/orc/orc_forward_southwest.png"));
-        		return bufferedImage;
-        	} catch (IOException e) {
-        		e.printStackTrace();
-        	}
-    	}
-    	if(n==2) {
-    		try {
-        		bufferedImage = ImageIO.read(new File("images/orc/orc_forward_northwest.png"));
-        		return bufferedImage;
-        	} catch (IOException e) {
-        		e.printStackTrace();
-        	}
-    	}
-    	if(n==3) {
-    		try {
-        		bufferedImage = ImageIO.read(new File("images/orc/orc_forward_northeast.png"));
-        		return bufferedImage;
-        	} catch (IOException e) {
-        		e.printStackTrace();
-        	}
-    	}
-    	}
-    	return null;
-    	// TODO: Change this method so you can load other orc animation bitmaps
-    }
-}*/
